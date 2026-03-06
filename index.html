@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Be My Valentine ❤️</title>
 
 <style>
-
 body{
     margin:0;
-    font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
     height:100vh;
     overflow:hidden;
     text-align:center;
@@ -22,35 +22,26 @@ body{
 }
 
 img{
-    width:260px;
+    width:220px;
     border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
 h1{
     color:white;
-    font-size:40px;
-    margin-top:20px;
-    text-shadow:2px 2px 10px rgba(0,0,0,0.2);
+    font-size:28px;
 }
 
 button{
-    font-size:20px;
-    padding:12px 28px;
+    font-size:18px;
+    padding:12px 24px;
     margin:15px;
     border:none;
-    border-radius:30px;
-    cursor:pointer;
-    transition:0.3s;
+    border-radius:25px;
 }
 
 #yes{
     background:#ff3366;
     color:white;
-}
-
-#yes:hover{
-    transform:scale(1.1);
 }
 
 #no{
@@ -60,79 +51,60 @@ button{
 
 .heart{
     position:absolute;
-    color:red;
-    font-size:20px;
-    animation: float 6s linear infinite;
+    animation:float 6s linear infinite;
 }
 
 @keyframes float{
-    0%{
-        transform:translateY(100vh) scale(0.5);
-        opacity:0;
-    }
-    50%{
-        opacity:1;
-    }
-    100%{
-        transform:translateY(-10vh) scale(1.2);
-        opacity:0;
-    }
+    0%{transform:translateY(100vh);opacity:0;}
+    50%{opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="container">
-
 <img src="https://picsum.photos/300">
-    
-
 <h1>Will you be my Valentine? ❤️</h1>
 
 <button id="yes" onclick="yesAnswer()">Yes 💖</button>
 <button id="no">No</button>
-
 </div>
 
 <script>
 
 const noButton = document.getElementById("no");
 
-noButton.addEventListener("mouseover", function(){
-
+function moveButton(){
     const x = Math.random() * (window.innerWidth - 100);
     const y = Math.random() * (window.innerHeight - 50);
 
     noButton.style.left = x + "px";
     noButton.style.top = y + "px";
+}
 
-});
+noButton.addEventListener("touchstart", moveButton);
+noButton.addEventListener("mouseover", moveButton);
 
 function yesAnswer(){
     document.body.innerHTML =
-    "<h1 style='color:white;margin-top:40vh;font-size:45px;'>Yay!! ❤️ I love you! too 🌹</h1>";
+    "<h1 style='color:white;margin-top:40vh;'>Yay! ❤️ I love you so much!</h1>";
 }
 
 function createHeart(){
-
     const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
+    heart.className="heart";
+    heart.innerHTML="❤️";
 
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 25 + 15 + "px";
+    heart.style.left=Math.random()*100+"vw";
 
     document.body.appendChild(heart);
 
-    setTimeout(()=>{
-        heart.remove();
-    },6000);
-
+    setTimeout(()=>heart.remove(),6000);
 }
 
-setInterval(createHeart,300);
+setInterval(createHeart,400);
 
 </script>
 
